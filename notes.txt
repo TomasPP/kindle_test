@@ -1,3 +1,5 @@
+Amazon Kindle Cloud Storage API:
+
 ----------------- Delete request -------------------
 Request URL:
 https://www.amazon.com/mn/dcw/myx/ajax-activity
@@ -80,3 +82,8 @@ Referer: https://www.amazon.com/mn/dcw/myx.html/ref=kinw_myk_redirect?&tag=bilbu
 Accept-Encoding: gzip, deflate, br
 Accept-Language: en-US,en;q=0.9,lt;q=0.8,ru;q=0.7
 Cookie: ......................
+
+---------------
+As far as I looked Amazon Cloud Drive is different storage API than Kindle Cloud Storage.
+At some point in 2016 they diverged. Before that whatever was sent to Kindle Cloud Storage it appeared in Amazon Cloud Drive.
+After that point Kindle Cloud Storage items are not seen in Amazon Cloud Drive.

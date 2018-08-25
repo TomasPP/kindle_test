@@ -28,16 +28,19 @@ public class KindleContentTest {
     public static final int MAX_LIST_COUNT = 18;
 
     public static void main(String[] args) throws IOException {
+        System.out.println("args = " + Arrays.toString(args));
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
-        final String csrfToken = "gA/YckpevRUYhSzb2au3hnh3kiBKcjE4w9/kXb4AAAAJAAAAAFuAVYhyYXcAAAAA";
+        validateCommandLine(args);
+
+        final String csrfToken = args[0];
 
         final String cookieFile = "headers.txt";
         final Header[] headers = loadHeaders(cookieFile);
 
 //        for (int i = 0; i < 5; i++)
 //        bulkDeleteKindleItems(headers, csrfToken);
-        getKindleContentItems(headers, csrfToken,MAX_LIST_COUNT);
+        getKindleContentItems(headers, csrfToken, MAX_LIST_COUNT);
 
 //        getKindleBooksOldAPI(headers);
 //        deleteKindleBookOldAPI(headers);
@@ -78,6 +81,14 @@ public class KindleContentTest {
     }    private static void logToFile(String fileName, String text) throws IOException {
         System.out.println(text);
         appendStringToFile(fileName, new Date() + " -----" + "\n" + text);
+    }
+
+    private static void validateCommandLine(String[] args) {
+        if (args.length == 0 || args.length > 1) {
+            System.out.println("Usage: ");
+            System.out.println(KindleContentTest.class.getName() + " <csrfToken value>");
+            System.exit(0);
+        }
     }
 
     private static void appendStringToFile(String fileName, String text) throws IOException {
@@ -146,7 +157,10 @@ public class KindleContentTest {
         String url = "https://www.amazon.com/mn/dcw/myx/ajax-activity";
 //        String url = "http://localhost:8080";
 
-        String json = String.format("{\"param\":{\"OwnershipData\":{\"sortOrder\":\"DESCENDING\",\"sortIndex\":\"DATE\",\"startIndex\":0,\"batchSize\":%d,\"contentType\":\"KindlePDoc\",\"phrase\":\"instapaper\",\"itemStatus\":[\"Active\"],\"isExtendedMYK\":false}}}",
+        String json = String.format("{\"param\":{\"OwnershipData\":{\"sortOrder\":\"DESCENDING\",\"sortIndex\":\"DATE\",\"startIndex\":0," +
+                        "\"batchSize\":%d,\"contentType\":\"KindlePDoc\"," +
+                //I am interested only in Instapaper related personal documents. Change your search phrase here.
+                        "\"phrase\":\"instapaper\",\"itemStatus\":[\"Active\"],\"isExtendedMYK\":false}}}",
                 count);
         System.out.println("json = " + json);
 
@@ -211,9 +225,8 @@ public class KindleContentTest {
 
     @SuppressWarnings("unused")
     private static void getKindleBooksOldAPI(Header[] headers) throws IOException {
+        //Old FIONA API. Still works for listing Kindle Cloud Storage.
         String url = "https://www.amazon.com/gp/digital/fiona/manage/features/order-history/ajax/queryPdocs.html";
-//        String url = "https://gturnquist-quoters.cfapps.io/api/random";
-//        String url = "https://www.verisign.com/";
 
         executeHttpGet(url, headers);
     }

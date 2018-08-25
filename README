@@ -1,0 +1,44 @@
+This plays around with some REST API's that are behind "Manage Your Content and Devices" Amazon page (URL: https://www.amazon.com/hz/mycd/myx).
+Mainly two functions: listing Kindle Content Items and bulk deleting some of them. This Amazon REST API is undocumented and private.
+So the code is written based on the analysis of HTTP traffic.
+
+This is half-baked code written for self-education purposes.
+
+Another reason for this code: I was using Instapaper service functionality to forward read later articles to Kindle.
+So I ended up with hundreds of Instapaper related documents in Kindle Cloud storage and no way to conveniently delete
+them as Amazon UI at the time was not permitting bulk deletes.
+
+Other people's similar projects:
+https://github.com/fatso83/amazon_fiona older version of Amazon Kindle Cloud Storage REST API was called FIONA. Now it seem to do not permit delete action on KindlePDoc items anymore.
+https://github.com/fatso83/amazon_fiona_js
+
+Usage:
+You can use Intellij project for running it.
+
+Or build project with Maven in project directory:
+mvn package
+this creates target dir with jar in project directory.
+
+Before running modify headers.txt file with your request header values.
+Take them after you login to your https://www.amazon.com/hz/mycd/myx page in Chrome browser.
+https://www.mkyong.com/computer-tips/how-to-view-http-headers-in-google-chrome/
+Click view source near Response Headers and copy to the headers.txt
+Note: if you do not see view source near Response Headers and you see headers that start with ':' like ':host'. That means you are seeing HTTP2 traffic.
+This code is HTTP1.1 client so restart Chrome with command line argument --disable-http2. Make sure Chrome is really restarted and there is no lingering chrome.exe in Task manager.
+
+Get csrfToken token value:
+Do view source and search for 'csrfToken' in the page after you login to https://www.amazon.com/hz/mycd/myx
+You will find:
+var csrfToken = "gA/NiEMCVvnEXTLvD1WkNnQzJfbshp25QZDx/4oAAAAJAAAAAFuBTE9yYXcAAAAA";
+csrfToken is sent in every REST API request payload so another place is to URL decode it from the payload.
+
+Then run command line from project directory:
+java -jar target/kindle_test-1.0.jar <csrfToken>
+
+Check the output of the program. Also check list_log.txt
+
+For delete action KindleContentTest.java uncomment line bulkDeleteKindleItems
+//        bulkDeleteKindleItems(headers, csrfToken);
+
+After execution check delete_log.txt for more details.
+Also see notes.txt for analysis notes on the Amazon REST API.
