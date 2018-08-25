@@ -2,9 +2,9 @@ This plays around with some REST API's that are behind "Manage Your Content and 
 Mainly two functions: listing Kindle Content Items and bulk deleting some of them. This Amazon REST API is undocumented and private.
 So the code is written based on the analysis of HTTP traffic.
 
-This is half-baked code written for self-education purposes.
+This is proof-of-concept code written for self-education purposes.
 
-Another reason for this code: I was using Instapaper service functionality to forward read later articles to Kindle.
+Another reason for this code: I was using Instapaper.com service functionality to forward read later articles to Kindle.
 So I ended up with hundreds of Instapaper related documents in Kindle Cloud storage and no way to conveniently delete
 them as Amazon UI at the time was not permitting bulk deletes.
 
