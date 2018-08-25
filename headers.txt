@@ -1,0 +1,13 @@
+Host: www.amazon.com
+Connection: keep-alive
+Content-Length: 392
+Origin: https://www.amazon.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+client: MYX
+Content-Type: application/x-www-form-urlencoded
+Accept: application/json, text/plain, */*
+DNT: 1
+Referer: https://www.amazon.com/hz/mycd/myx?ie=UTF8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9,lt;q=0.8,ru;q=0.7
+Cookie: ................................................................................................................................

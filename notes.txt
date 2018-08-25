@@ -1,0 +1,82 @@
+----------------- Delete request -------------------
+Request URL:
+https://www.amazon.com/mn/dcw/myx/ajax-activity
+----
+Request payload to delete one item:
+data={
+  "param": {
+    "DeleteContent": {
+      "asinDetails": {
+        "AHIXK..............XANS5LO7WIMC": {
+          "category": "KindlePDoc"
+        }
+      }
+    }
+  }
+}&csrfToken=gFg.............../DRno1NRoCX/sAQZY...............6AFp8aUFyYXcAAAAA
+---
+Request payload for two:
+data={
+  "param": {
+    "DeleteContent": {
+      "asinDetails": {
+        "FE5G5...........5XIHAXXXMUFGI": {
+          "category": "KindlePDoc"
+        },
+        "WUUG............5QJPJZM4YN": {
+          "category": "KindlePDoc"
+        }
+      }
+    }
+  }
+}&csrfToken=gFgf.............../DRno1NRoCX/sAQZY1.............8aUFyYXcAAAAA
+----
+Request headers:
+
+Host: www.amazon.com
+Connection: keep-alive
+Content-Length: 244
+Accept: application/json, text/plain, */*
+Origin: https://www.amazon.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36
+client: MYX
+Content-Type: application/x-www-form-urlencoded
+DNT: 1
+Referer: https://www.amazon.com/mn/dcw/myx.html/ref=kinw_myk_redirect?&tag=bilbur06-20
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9,lt;q=0.8,ru;q=0.7
+Cookie: .........................
+
+Response:
+{"DeleteContent":{"resultMap":{"AHIXK.....................XANS5LO7WIMC":true},"success":true}}
+-------------------------------------------------------------------------------------------------------------------
+get list of items:
+Request URL:https://www.amazon.com/mn/dcw/myx/ajax-activity
+Request Method:POST
+
+Request input decoded:
+data={"param":{"OwnershipData":{"sortOrder":"DESCENDING","sortIndex":"DATE","startIndex":0,"batchSize":18,"contentType":"KindlePDoc","phrase":"instapaper","itemStatus":["Active"],"isExtendedMYK":false}}}&csrfToken=g................../+XaK1EgEV6sGXQf.............3DRyYXcAAAAA
+Max value of batchSize is 20. If greater you get error:
+HTTP/1.1 200 OK
+{"OwnershipData":{"success":false,"error":"GENERIC_ERROR"}}
+
+Response output:
+{"OwnershipData":{"hasMoreItems":true,"numberOfItems":302,"success":true,"items":[
+{"isContentValid":true,"author":"Instapaper","origin":"PDOCS","renderDownloadElements":true,"title":"Instapaper: Thursday, Dec. 19","acquiredTime":1387492083384,"sortableAuthors":"instapaper","sortableTitle":"instapaper thursday dec 19","isNotYetLaunched":false,"isSizeGreaterThan50Mb":false,"capability":["EMAIL_ALIAS_SUPPORTED"],"acquiredDate":"December 19, 2013","numericSize":278160,"size":"271.6 KB","collectionCount":0,"asin":"M6GZNQIT3KKEDLZ6Z3TTPVSDAYABM7DJ","category":"KindlePDoc","contentType":"application/x-mobipocket-ebook","numericFileSize":656},
+.......
+]}}
+
+Request headers:
+Host: www.amazon.com
+Connection: keep-alive
+Content-Length: 392
+Accept: application/json, text/plain, */*
+Origin: https://www.amazon.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36
+client: MYX
+Content-Type: application/x-www-form-urlencoded
+DNT: 1
+Referer: https://www.amazon.com/mn/dcw/myx.html/ref=kinw_myk_redirect?&tag=bilbur06-20
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9,lt;q=0.8,ru;q=0.7
+Cookie: ......................
